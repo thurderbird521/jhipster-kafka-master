@@ -1,7 +1,7 @@
 FROM maven:3.5.0-jdk-8-alpine
 LABEL maintainer "bird"
 WORKDIR /project
-ADD / /project
+ADD . /project
 #-Pprod,swagger
 RUN mvn package -Dmaven.test.skip=true
 CMD ["mvn"]
