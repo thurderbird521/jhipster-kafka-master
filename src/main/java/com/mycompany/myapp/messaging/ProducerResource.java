@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProducerResource{
 
     private MessageChannel channel;
+    private MessageChannel channel2;
 
     public ProducerResource(ProducerChannel channel) {
         this.channel = channel.messageChannel();
+        this.channel2 =channel.messageChannel2();
     }
 
     @GetMapping("/greetings/{count}")
@@ -23,6 +25,7 @@ public class ProducerResource{
     public void produce(@PathVariable int count) {
         while(count > 0) {
             channel.send(MessageBuilder.withPayload(new Greeting().setMessage("Hello world!: " + count)).build());
+            channel2.send(MessageBuilder.withPayload(new Greeting().setMessage("come on baby!: " + count)).build());
             count--;
         }
     }

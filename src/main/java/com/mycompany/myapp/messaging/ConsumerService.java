@@ -15,4 +15,9 @@ public class ConsumerService {
     public void consume(Greeting greeting) {
         log.info("Received message: {}.", greeting.getMessage());
     }
+    
+    @StreamListener(ConsumerChannel.CHANNEL2)
+    public void consume2(Greeting greeting) {
+        log.info("Baby message: {}.", greeting.getMessage());
+    }
 }
